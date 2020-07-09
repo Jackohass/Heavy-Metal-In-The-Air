@@ -17,9 +17,12 @@ public class PlayerControll : MonoBehaviour
 
     public float speed;
     public Boundry bound;
+    public int maxHP;
+    public int currentHP;
 
     void FixedUpdate()
     {
+        AudioSource audioSrc = GetComponent<AudioSource>();
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         /*if(moveHorizontal != 0 || moveVertical != 0)
@@ -35,6 +38,20 @@ public class PlayerControll : MonoBehaviour
             Mathf.Clamp(GetComponent<Rigidbody2D>().position.y, bound.yMin, bound.yMax),
             0.0f
         );
+        if(GetComponent<Rigidbody2D>().velocity.y != 0 || GetComponent<Rigidbody2D>().velocity.x != 0)
+        {
+            if(!audioSrc.isPlaying)
+            {
+                audioSrc.Play();
+            }
+        }
+        else
+        {
+            if (audioSrc.isPlaying)
+            {
+                audioSrc.Stop();
+            }
+        }
     }
 
     //Throws
