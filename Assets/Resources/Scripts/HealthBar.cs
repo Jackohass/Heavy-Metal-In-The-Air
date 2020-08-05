@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public PlayerControll player;
+    public Health player;
+    public Text HPText;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControll>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         if (player == null)
         {
             Debug.LogError("Unable to find the player script");
@@ -18,10 +21,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            player.currentHP -= 1;
-            transform.localScale = new Vector3((float)player.currentHP / player.maxHP, 1.0f, 1.0f);
-        }
+        transform.localScale = new Vector3((float)player.currentHP / player.maxHP, 1.0f, 1.0f);
+        HPText.text = player.currentHP + "/" + player.maxHP;
     }
 }

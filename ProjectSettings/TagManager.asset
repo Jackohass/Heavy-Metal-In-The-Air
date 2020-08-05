@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Throw
+  - Boundry
+  - Creature
+  - TreasureText
+  - LoadingText
   layers:
   - Default
   - TransparentFX
